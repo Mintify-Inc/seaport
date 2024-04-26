@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.24;
 
 import "forge-std/Script.sol";
-
-import { Seaport } from "seaport-core/src/Seaport.sol";
+import { MintifyExchange } from "./../contracts/MintifyExchange.sol";
 
 interface ImmutableCreate2Factory {
     function safeCreate2(
@@ -19,19 +18,19 @@ contract SeaportDeployer is Script {
     address private constant CONDUIT_CONTROLLER =
         0x00000000F9490004C11Cef243f5400493c00Ad63;
     address private constant SEAPORT_ADDRESS =
-        0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC;
+        0x6A24c0F4f1058C1E83960d9Fe0A077AFE088D893;
 
     function run() public {
         // Utilizes the locally-defined PRIVATE_KEY environment variable to sign txs.
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         // CREATE2 salt (20-byte caller or zero address + 12-byte salt).
-        bytes32 salt = 0x0000000000000000000000000000000000000000d4b6fcc21169b803f25d2210;
+        bytes32 salt = 0x0000000000000000000000000000000000000000ab822ab2ebc89c24dffa7f97;
 
         // Packed and ABI-encoded contract bytecode and constructor arguments.
         // NOTE: The Seaport contract *must* be compiled using the optimized profile config.
         bytes memory initCode = abi.encodePacked(
-            type(Seaport).creationCode,
+            type(MintifyExchange).creationCode,
             abi.encode(CONDUIT_CONTROLLER)
         );
 

@@ -82,7 +82,7 @@ import { Consideration } from "seaport-core/src/lib/Consideration.sol";
  *         spent (the "offer") along with an arbitrary number of items that must
  *         be received back by the indicated recipients (the "consideration").
  */
-contract MintifyExchange is Consideration {
+contract Seaport is Consideration {
     /**
      * @notice Derive and set hashes, reference chainId, and associated domain
      *         separator during deployment.
@@ -103,7 +103,7 @@ contract MintifyExchange is Consideration {
         // Return the name of the contract.
         assembly {
             mstore(0x20, 0x20)
-            mstore(0x47, 0x074d696e74696679)
+            mstore(0x47, 0x07536561706f7274)
             return(0x20, 0x60)
         }
     }
@@ -116,6 +116,6 @@ contract MintifyExchange is Consideration {
      */
     function _nameString() internal pure override returns (string memory) {
         // Return the name of the contract.
-        return "MintifyExchange";
+        return "Seaport";
     }
 }
