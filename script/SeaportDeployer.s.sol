@@ -2,7 +2,6 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Script.sol";
-
 import { Seaport } from "seaport-core/src/Seaport.sol";
 import { MintifyExchange } from "./../contracts/MintifyExchange.sol";
 
