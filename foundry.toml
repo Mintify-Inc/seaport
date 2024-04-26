@@ -18,7 +18,7 @@ remappings = [
     'seaport-core/=lib/seaport-core/',
     'seaport/=contracts/'
 ]
-optimizer_runs = 4_294_967_295
+optimizer_runs = 1
 fs_permissions = [
     { access = "read", path = "./optimized-out" },
     { access = "read", path = "./reference-out" },
@@ -81,3 +81,10 @@ tab_width = 4
 bracket_spacing = true
 
 # See more config options https://github.com/gakonst/foundry/tree/master/config
+[rpc_endpoints]
+blastTest = "https://sepolia.blast.io"
+blastMain = "https://rpc.blast.io"
+
+[etherscan]
+blastTest = { key = "${ETHERSCAN_API_KEY}" }
+blastMain = { key = "${ETHERSCAN_API_KEY}" }
