@@ -25,7 +25,7 @@ contract SeaportDeployer is Script {
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         // CREATE2 salt (20-byte caller or zero address + 12-byte salt).
-        bytes32 salt = 0x0000000000000000000000000000000000000000ab822ab2ebc89c24dffa7f97;
+        bytes32 salt = 0x0000000000000000000000000000000000000000ab822ab2ebc89c24dffa7f98;
 
         // Packed and ABI-encoded contract bytecode and constructor arguments.
         // NOTE: The Seaport contract *must* be compiled using the optimized profile config.
