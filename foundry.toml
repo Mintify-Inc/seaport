@@ -18,7 +18,7 @@ remappings = [
     'seaport-core/=lib/seaport-core/',
     'seaport/=contracts/'
 ]
-optimizer_runs = 1
+optimizer_runs = 9_999_999
 fs_permissions = [
     { access = "read", path = "./optimized-out" },
     { access = "read", path = "./reference-out" },
