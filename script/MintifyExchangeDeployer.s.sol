@@ -18,14 +18,14 @@ contract SeaportDeployer is Script {
     address private constant CONDUIT_CONTROLLER =
         0x00000000F9490004C11Cef243f5400493c00Ad63;
     address private constant SEAPORT_ADDRESS =
-        0x6A24c0F4f1058C1E83960d9Fe0A077AFE088D893;
+        0x00000003cf2c206e1fdA7fd032b2f9bdE12Ec6Cc;
 
     function run() public {
         // Utilizes the locally-defined PRIVATE_KEY environment variable to sign txs.
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         // CREATE2 salt (20-byte caller or zero address + 12-byte salt).
-        bytes32 salt = 0x00000000000000000000000000000000000000009dff8ad959006a1de9363d02;
+        bytes32 salt = 0x000000000000000000000000000000000000000084b0d82de78a211d114c20bf;
 
         // Packed and ABI-encoded contract bytecode and constructor arguments.
         // NOTE: The Seaport contract *must* be compiled using the optimized profile config.
