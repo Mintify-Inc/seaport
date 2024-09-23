@@ -87,7 +87,8 @@ blastMain = "https://rpc.blast.io"
 baseTest = "https://sepolia.base.org"
 baseMain = "https://mainnet.base.org"
 ethTest = "https://rpc.sepolia.org"
-ethMain = "https://eth-mainnet.public.blastapi.io	"
+ethMain = "https://eth-mainnet.public.blastapi.io"
+flowMain = "https://mainnet.evm.nodes.onflow.org"
 
 [etherscan]
 blast_sepolia = { key = "${BLAST_API_KEY}" }
@@ -96,3 +97,4 @@ base_sepolia = { key = "${BASE_API_KEY}" }
 base = { key = "${BASE_API_KEY}" }
 sepolia = { key = "${ETHEREUM_API_KEY}" }
 mainnet = { key = "${ETHEREUM_API_KEY}" }
+flow = { key = "${FLOW_API_KEY}" }
