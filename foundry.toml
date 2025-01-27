@@ -1,9 +1,12 @@
 [profile.default]
-solc = '0.8.24'
+solc = '0.8.28'
 evm_version='cancun'
 src = 'contracts'
 out = 'out'
 libs = ["node_modules", "lib"]
+fallback_oz = true
+is_system = false # Note: NonceHolder and the ContractDeployer system contracts can only be called with a special isSystem flag as true
+mode = "3"
 test = 'test/foundry'
 remappings = [
     '@rari-capital/solmate/=lib/solmate/',
@@ -89,6 +92,9 @@ baseMain = "https://mainnet.base.org"
 ethTest = "https://rpc.sepolia.org"
 ethMain = "https://eth-mainnet.public.blastapi.io"
 flowMain = "https://mainnet.evm.nodes.onflow.org"
+apeMain = "https://apechain.calderachain.xyz/http"
+abstractTest = "https://api.testnet.abs.xyz"
+abstractMain = "https://api.mainnet.abs.xyz"
 
 [etherscan]
 blast_sepolia = { key = "${BLAST_API_KEY}" }
@@ -97,4 +103,7 @@ base_sepolia = { key = "${BASE_API_KEY}" }
 base = { key = "${BASE_API_KEY}" }
 sepolia = { key = "${ETHEREUM_API_KEY}" }
 mainnet = { key = "${ETHEREUM_API_KEY}" }
-flow = { key = "${FLOW_API_KEY}" }
+flow = { url = "https://evm.flowscan.io" , chain = 747, key = "${BASE_API_KEY}" }
+apechain = { url = "https://api.apescan.io/api", chain = 33139 , key = "${APE_API_KEY}" }
+abstract = { url = "https://api.abscan.org/api", chain = 2741, key = ''}
+abstract_sepolia = { url = "https://api-sepolia.abscan.org/api", chain = 11124, key = ''}
