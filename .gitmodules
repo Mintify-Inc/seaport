@@ -30,3 +30,6 @@
 [submodule "lib/seaport-sol"]
 	path = lib/seaport-sol
 	url = https://github.com/projectopensea/seaport-sol
+[submodule "lib/closedsea"]
+	path = lib/closedsea
+	url = https://github.com/vectorized/closedsea
