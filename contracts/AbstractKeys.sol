@@ -36,8 +36,8 @@ contract MintifyAbstractKeys is ReentrancyGuard, Ownable, OperatorFilterer, ERC2
     bool public phaseTwoOpen;
 
     // Phases prices
-    uint256 private phaseOnePrice = 6000000000000000; // 0.006 ETH
-    uint256 private phaseTwoPrice = 9500000000000000; // 0.0095 ETH
+    uint256 public phaseOnePrice = 6000000000000000; // 0.006 ETH
+    uint256 public phaseTwoPrice = 9500000000000000; // 0.0095 ETH
 
     // Phases maps
     mapping(address => uint256) public phaseOneAllowance;
@@ -52,7 +52,7 @@ contract MintifyAbstractKeys is ReentrancyGuard, Ownable, OperatorFilterer, ERC2
     uint256 public phaseTwoMaxPerWallet = 5;
 
     // Phases Merkle Roots
-    bytes32 public phaseOneMerkleRoot;
+    bytes32 public phaseOneMerkleRoot = 0xdd9f5a34108c0bcaa6a6937c38d0dc131b5b45fe424ebe2706e6e48d4aa1d0fd;
 
     uint256 public maxSupply = 12000;
 
@@ -75,7 +75,7 @@ contract MintifyAbstractKeys is ReentrancyGuard, Ownable, OperatorFilterer, ERC2
 
     string public _baseTokenURI = "https://genesis-metas.mintify.xyz";
 
-    constructor() ERC721A("Mintify Abstract Keys", "MNFABK") Ownable(msg.sender) {
+    constructor() ERC721A("Mintify Abstract Keys", "MNFABK") Ownable() {
 
         // Register operator filtering
         _registerForOperatorFiltering();
@@ -278,7 +278,10 @@ contract MintifyAbstractKeys is ReentrancyGuard, Ownable, OperatorFilterer, ERC2
 
     // Withdraw Balance to owner
     function withdraw() public onlyOwner nonReentrant {
-        payable(owner()).transfer(address(this).balance);
+        (bool success, ) = payable(owner()).call{value: address(this).balance}("");
+        if (!success) {
+            revert();
+        }
     }
 
     // Withdraw Balance to Address
@@ -289,7 +292,10 @@ contract MintifyAbstractKeys is ReentrancyGuard, Ownable, OperatorFilterer, ERC2
             revert InvalidAddress();
         }
 
-        _to.transfer(address(this).balance);
+        (bool success, ) = payable(_to).call{value: address(this).balance}("");
+        if (!success) {
+            revert();
+        }
     }
 
     // Break Transfer Lock
