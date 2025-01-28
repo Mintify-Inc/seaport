@@ -30,7 +30,7 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
     bool public initialTransferLockOn = true;
     bool public isRegistryActive;
     address public registryAddress;
-    string public _baseTokenURI = "";
+    string private _baseTokenURI = "";
 
     
     // 1 variables
@@ -430,7 +430,7 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
         if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
 
         string memory baseURI = _baseURI();
-        return bytes(baseURI).length != 0 ? string(abi.encodePacked(baseURI, _toString(tokenId), ".json")) : "";
+        return bytes(baseURI).length != 0 ? string(abi.encodePacked(baseURI, "/", _toString(tokenId), ".json")) : "";
 
     }
 

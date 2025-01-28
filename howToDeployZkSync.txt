@@ -1,0 +1,14 @@
+forge create contracts/Abstractions.sol:Abstractions \                                                                                                    17:49:52
+    --rpc-url https://api.testnet.abs.xyz \
+    --account BOB \
+    --chain 11124 \
+    --zksync
+
+
+
+    forge verify-contract 0x6D4c367F2147f140235B4A4C1BFF02eD4a432b8F \                                                                                        17:49:52
+    contracts/Abstractions.sol:Abstractions \
+    --verifier etherscan \
+    --verifier-url https://api-sepolia.abscan.org/api \
+    --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
+    --zksync
