@@ -34,8 +34,8 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
 
     
     // 1 variables
-    uint256 public startTimePhase1 = 1738173600;
-    uint256 public endTimePhase1 = 1738180800;
+    uint256 public startTimePhase1 = 1738177200;
+    uint256 public endTimePhase1 = 1738184400;
     uint256 public maxSupplyPhase1 = 913;
     uint256 public totalSupplyPhase1;
     uint256 public pricePhase1 = 29000000000000000;
@@ -44,8 +44,8 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
     mapping(address => uint256) public walletMintsPhase1;
     
     // 2 variables
-    uint256 public startTimePhase2 = 1738180800;
-    uint256 public endTimePhase2 = 1738184400;
+    uint256 public startTimePhase2 = 1738184400;
+    uint256 public endTimePhase2 = 1738191600;
     uint256 public maxSupplyPhase2 = 0;
     uint256 public totalSupplyPhase2;
     uint256 public pricePhase2 = 29000000000000000;
@@ -65,7 +65,7 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
     }
 
     // 1 Mint
-    function mintPhase1(bytes32[] calldata merkleProof, uint256 quantity) external payable {
+    function mintPhase1(bytes32[] calldata merkleProof, uint256 allowance, uint256 quantity) external payable {
 
         // Check if mint has started
         if (startTimePhase1 != 0 && block.timestamp < startTimePhase1) {
@@ -87,6 +87,11 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
             revert MaxSupplyExceeded();
         }
 
+        // Check if the quantity is within the allowance
+        if (quantity > allowance) {
+            revert MaxSupplyExceeded();
+        }
+
         // Check if the price is correct
         if (msg.value != (pricePhase1 * quantity)) {
             revert WrongWeiSent();
@@ -95,18 +100,19 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
         // Check if the proof is set, and if it is valid
         if (merkleRootPhase1 != bytes32(0)) {
             // Using Merkle Tree
-            bytes32 node = keccak256(abi.encodePacked(msg.sender, quantity));
+            bytes32 node = keccak256(abi.encodePacked(msg.sender, allowance));
             if (!MerkleProof.verify(merkleProof, merkleRootPhase1, node)) {
                 revert InvalidMerkleProof();
             }
         }
             
-        // If allowlist is not set, check if we have exceeded phase max per wallet if set.
-        else if (maxPerWalletPhase1 > 0 && walletMintsPhase1[msg.sender] + quantity > maxPerWalletPhase1) {
+        // Check if we have exceeded phase max per wallet if set.
+        if (maxPerWalletPhase1 > 0 && walletMintsPhase1[msg.sender] + quantity > maxPerWalletPhase1) {
             revert MaxSupplyExceeded();
         }
 
         // Mint the tokens
+        walletMintsPhase1[msg.sender] += quantity;
         totalSupplyPhase1 += quantity;
         _mint(msg.sender, quantity);
 
@@ -140,12 +146,13 @@ contract Abstractions is Ownable, OperatorFilterer, ERC2981, ERC721A {
             revert WrongWeiSent();
         }
         
-        // If allowlist is not set, check if we have exceeded phase max per wallet if set.
-        else if (maxPerWalletPhase2 > 0 && walletMintsPhase2[msg.sender] + quantity > maxPerWalletPhase2) {
+        // Check if we have exceeded phase max per wallet if set.
+        if (maxPerWalletPhase2 > 0 && walletMintsPhase2[msg.sender] + quantity > maxPerWalletPhase2) {
             revert MaxSupplyExceeded();
         }
 
         // Mint the tokens
+        walletMintsPhase2[msg.sender] += quantity;
         totalSupplyPhase2 += quantity;
         _mint(msg.sender, quantity);
 
