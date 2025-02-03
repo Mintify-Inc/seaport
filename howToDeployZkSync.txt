@@ -1,4 +1,6 @@
-forge create contracts/Abstractions.sol:Abstractions \                                                                                                    17:49:52
+SEPOLIA
+
+forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
     --rpc-url https://api.testnet.abs.xyz \
     --account BOB \
     --chain 11124 \
@@ -6,9 +8,29 @@ forge create contracts/Abstractions.sol:Abstractions \                          
 
 
 
-    forge verify-contract 0x6D4c367F2147f140235B4A4C1BFF02eD4a432b8F \                                                                                        17:49:52
-    contracts/Abstractions.sol:Abstractions \
+    forge verify-contract 0x97f8003e70fc6a0701eB729FE74d916aDc92EB6f \
+    contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
     --verifier etherscan \
     --verifier-url https://api-sepolia.abscan.org/api \
+    --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
+    --zksync
+
+
+================================================================================================================
+
+MAINNET
+
+forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+    --rpc-url https://api.mainnet.abs.xyz \
+    --account BOB \
+    --chain 2741 \
+    --zksync
+
+
+
+    forge verify-contract 0x7E4a411eab0B60F86d54Eb210c197Bb18bf2EB59 \
+    contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+    --verifier etherscan \
+    --verifier-url https://api.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
     --zksync
