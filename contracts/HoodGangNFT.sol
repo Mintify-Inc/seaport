@@ -25,14 +25,14 @@ interface IRegistry {
     function isAllowedOperator(address operator) external view returns (bool);
 }
 
-contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
+contract HoodGangNFT is Ownable, OperatorFilterer, ERC2981, ERC721A {
 
     // Launchpad Fee
     uint256 public launchpadFee = 370000000000000;
     address public launchpadFeeAddress = 0x2DCC7c4Ab800bF67380e2553BE1E6891A36F18E7;
 
     using BitMaps for BitMaps.BitMap;
-    uint256 public maxSupply = 3333;
+    uint256 public maxSupply = 1111;
     bool public operatorFilteringEnabled = true;
     bool public initialTransferLockOn = true;
     bool public isRegistryActive;
@@ -41,47 +41,37 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
 
     
     // Phase 1 variables
-    uint256 public startTimePhase1 = 1738688400;
-    uint256 public endTimePhase1 = 1738692000;
+    uint256 public startTimePhase1 = 1738947600;
+    uint256 public endTimePhase1 = 1738951200;
     uint256 public maxSupplyPhase1 = 0;
     uint256 public totalSupplyPhase1;
-    uint256 public pricePhase1 = 0;
-    uint256 public maxPerWalletPhase1 = 3;
-    bytes32 public merkleRootPhase1 = 0xb84c78161c34e0f3149d835f77d390462f27e6a8e5346985f8703ac88f020461;
+    uint256 public pricePhase1 = 5500000000000000;
+    uint256 public maxPerWalletPhase1 = 1;
+    bytes32 public merkleRootPhase1 = 0xfa79ce7add5507f508b43697b013373fcd0b38363f3e87de5347b341bffc28a2;
     mapping(address => uint256) public walletMintsPhase1;
     
     // Phase 2 variables
-    uint256 public startTimePhase2 = 1738692000;
-    uint256 public endTimePhase2 = 1738699200;
+    uint256 public startTimePhase2 = 1738951200;
+    uint256 public endTimePhase2 = 1738954800;
     uint256 public maxSupplyPhase2 = 0;
     uint256 public totalSupplyPhase2;
-    uint256 public pricePhase2 = 0;
+    uint256 public pricePhase2 = 5500000000000000;
     uint256 public maxPerWalletPhase2 = 2;
-    bytes32 public merkleRootPhase2 = 0x7d280ae2377d7556e7905b1995a8f24cf0887e18f4f1c70b75ccfe33fb520156;
+    bytes32 public merkleRootPhase2 = 0xfc9bf367f4a12d4edc43478c9cbe39a4d37efcbcb7ecd182c0ab681c060c4648;
     mapping(address => uint256) public walletMintsPhase2;
     
     // Phase 3 variables
-    uint256 public startTimePhase3 = 1738699200;
-    uint256 public endTimePhase3 = 1738702800;
+    uint256 public startTimePhase3 = 1738954800;
+    uint256 public endTimePhase3 = 1738958400;
     uint256 public maxSupplyPhase3 = 0;
     uint256 public totalSupplyPhase3;
-    uint256 public pricePhase3 = 0;
+    uint256 public pricePhase3 = 5500000000000000;
     uint256 public maxPerWalletPhase3 = 2;
-    bytes32 public merkleRootPhase3 = 0x7d280ae2377d7556e7905b1995a8f24cf0887e18f4f1c70b75ccfe33fb520156;
+    bytes32 public merkleRootPhase3 = 0x0;
     mapping(address => uint256) public walletMintsPhase3;
     
-    // Phase 4 variables
-    uint256 public startTimePhase4 = 1738702800;
-    uint256 public endTimePhase4 = 1738706400;
-    uint256 public maxSupplyPhase4 = 0;
-    uint256 public totalSupplyPhase4;
-    uint256 public pricePhase4 = 0;
-    uint256 public maxPerWalletPhase4 = 5;
-    bytes32 public merkleRootPhase4 = 0x0;
-    mapping(address => uint256) public walletMintsPhase4;
-    
 
-    constructor() ERC721A("ToadsInTheTrenches", "TNT") Ownable() {
+    constructor() ERC721A("HoodGangNFT", "HDG") Ownable() {
 
         // Register operator filtering
         _registerForOperatorFiltering();
@@ -90,7 +80,7 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
         _setDefaultRoyalty(owner(), 500);
         
         // Deployment Airdrop
-        _mint(0xb1D6db878321acCF2A8Bf482750B3A4eFD9c5Cd4, 350);
+        _mint(0x26A8E9D634cbF9986a28497FC94e2d42818A0e35, 50);
 
     }
 
@@ -207,7 +197,7 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
     }
 
     // Phase 3 Mint
-    function mintPhase3(bytes32[] calldata merkleProof, uint256 quantity) external payable {
+    function mintPhase3(uint256 quantity) external payable {
 
         // Check if mint has started
         if (startTimePhase3 != 0 && block.timestamp < startTimePhase3) {
@@ -234,16 +224,6 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
             revert WrongWeiSent();
         }
          
-
-        // Check if the proof is set, and if it is valid
-        if (merkleRootPhase3 != bytes32(0)) {
-            // Using Merkle Tree
-            bytes32 node = keccak256(abi.encodePacked(msg.sender));
-            if (!MerkleProof.verify(merkleProof, merkleRootPhase3, node)) {
-                revert InvalidMerkleProof();
-            }
-        }
-            
         // Check if we have exceeded phase max per wallet if set.
         if (maxPerWalletPhase3 > 0 && walletMintsPhase3[msg.sender] + quantity > maxPerWalletPhase3) {
             revert MaxSupplyExceeded();
@@ -258,52 +238,6 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
         // Mint the tokens
         walletMintsPhase3[msg.sender] += quantity;
         totalSupplyPhase3 += quantity;
-        _mint(msg.sender, quantity);
-
-    }
-
-    // Phase 4 Mint
-    function mintPhase4(uint256 quantity) external payable {
-
-        // Check if mint has started
-        if (startTimePhase4 != 0 && block.timestamp < startTimePhase4) {
-            revert PublicSaleClosed();
-        }
-
-        // Check if mint has ended
-        if (endTimePhase4 != 0 && block.timestamp > endTimePhase4) {
-            revert PublicSaleClosed();
-        }
-
-        // Check if the mint will exceed total max supply, if set.
-        if (maxSupply > 0 && totalSupply() + quantity > maxSupply) {
-            revert MaxSupplyExceeded();
-        }
-
-        // If phase max supply is set, check if it's exceeded
-        if (maxSupplyPhase4 != 0 && totalSupplyPhase4 + quantity > maxSupplyPhase4) {
-            revert MaxSupplyExceeded();
-        }
-
-        // Check if the price is correct
-        if (msg.value != (pricePhase4 + launchpadFee) * quantity) {
-            revert WrongWeiSent();
-        }
-         
-        // Check if we have exceeded phase max per wallet if set.
-        if (maxPerWalletPhase4 > 0 && walletMintsPhase4[msg.sender] + quantity > maxPerWalletPhase4) {
-            revert MaxSupplyExceeded();
-        }
-
-        // Send the Launchpad Fee if set
-        if (launchpadFee > 0 && launchpadFeeAddress != address(0)) {
-            uint256 feeAmount = launchpadFee * quantity;
-            sendLaunchpadFee(feeAmount);
-        }
-
-        // Mint the tokens
-        walletMintsPhase4[msg.sender] += quantity;
-        totalSupplyPhase4 += quantity;
         _mint(msg.sender, quantity);
 
     }
@@ -465,34 +399,6 @@ contract ToadsInTheTrenches is Ownable, OperatorFilterer, ERC2981, ERC721A {
     // Set the merkle root for the phase
     function setMerkleRootPhase3(bytes32 newMerkleRoot) external onlyOwner {
         merkleRootPhase3 = newMerkleRoot;
-    }// Set the start time for the phase
-    function setStartTimePhase4(uint256 newStartTime) external onlyOwner {
-        startTimePhase4 = newStartTime;
-    }
-
-    // Set the end time for the phase
-    function setEndTimePhase4(uint256 newEndTime) external onlyOwner {
-        endTimePhase4 = newEndTime;
-    }
-
-    // Set the max supply for the phase
-    function setMaxSupplyPhase4(uint256 newMaxSupply) external onlyOwner {
-        maxSupplyPhase4 = newMaxSupply;
-    }
-
-    // Set max per wallet for the phase
-    function setMaxPerWalletPhase4(uint256 newMaxPerWallet) external onlyOwner {
-        maxPerWalletPhase4 = newMaxPerWallet;
-    }
-
-    // Set the price for the phase
-    function setPricePhase4(uint256 newPrice) external onlyOwner {
-        pricePhase4 = newPrice;
-    }
-
-    // Set the merkle root for the phase
-    function setMerkleRootPhase4(bytes32 newMerkleRoot) external onlyOwner {
-        merkleRootPhase4 = newMerkleRoot;
     }
 
     // =========================================================================

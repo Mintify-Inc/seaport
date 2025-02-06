@@ -1,6 +1,6 @@
 SEPOLIA
 
-forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+forge create contracts/HoodGangNFT.sol:HoodGangNFT \
     --rpc-url https://api.testnet.abs.xyz \
     --account BOB \
     --chain 11124 \
@@ -8,8 +8,8 @@ forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
 
 
 
-    forge verify-contract 0x97f8003e70fc6a0701eB729FE74d916aDc92EB6f \
-    contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+    forge verify-contract 0x9de430aB56efb425d6752D9e33cC0E2B76c13Acf \
+    contracts/HoodGangNFT.sol:HoodGangNFT \
     --verifier etherscan \
     --verifier-url https://api-sepolia.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
@@ -20,7 +20,7 @@ forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
 
 MAINNET
 
-forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+forge create contracts/HoodGangNFT.sol:HoodGangNFT \
     --rpc-url https://api.mainnet.abs.xyz \
     --account BOB \
     --chain 2741 \
@@ -28,8 +28,8 @@ forge create contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
 
 
 
-    forge verify-contract 0x7E4a411eab0B60F86d54Eb210c197Bb18bf2EB59 \
-    contracts/ToadsInTheTrenches.sol:ToadsInTheTrenches \
+    forge verify-contract 0xA3BCBF9cC63AF6Fd578f7fFf508640868f6091bF \
+    contracts/HoodGangNFT.sol:HoodGangNFT \
     --verifier etherscan \
     --verifier-url https://api.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
