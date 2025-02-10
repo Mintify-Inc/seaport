@@ -1,6 +1,6 @@
 SEPOLIA
 
-forge create contracts/HoodGangNFT.sol:HoodGangNFT \
+forge create contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
     --rpc-url https://api.testnet.abs.xyz \
     --account BOB \
     --chain 11124 \
@@ -8,8 +8,8 @@ forge create contracts/HoodGangNFT.sol:HoodGangNFT \
 
 
 
-    forge verify-contract 0x9de430aB56efb425d6752D9e33cC0E2B76c13Acf \
-    contracts/HoodGangNFT.sol:HoodGangNFT \
+    forge verify-contract 0x1AD17385c8e119B843625C0Ea945674C2C2CCe85 \
+    contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
     --verifier etherscan \
     --verifier-url https://api-sepolia.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
