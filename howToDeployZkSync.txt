@@ -1,6 +1,6 @@
 SEPOLIA
 
-forge create contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
+forge create contracts/TheLandBetween.sol:TheLandBetween \
     --rpc-url https://api.testnet.abs.xyz \
     --account BOB \
     --chain 11124 \
@@ -8,8 +8,8 @@ forge create contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
 
 
 
-    forge verify-contract 0x1AD17385c8e119B843625C0Ea945674C2C2CCe85 \
-    contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
+    forge verify-contract 0x85e7E81922476d8f3B55af93E8d212dB69425900 \
+    contracts/TheLandBetween.sol:TheLandBetween \
     --verifier etherscan \
     --verifier-url https://api-sepolia.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
@@ -20,7 +20,7 @@ forge create contracts/LevenCanyonLookout.sol:LevenCanyonLookout \
 
 MAINNET
 
-forge create contracts/HoodGangNFT.sol:HoodGangNFT \
+forge create contracts/TheLandBetween.sol:TheLandBetween \
     --rpc-url https://api.mainnet.abs.xyz \
     --account BOB \
     --chain 2741 \
@@ -28,8 +28,8 @@ forge create contracts/HoodGangNFT.sol:HoodGangNFT \
 
 
 
-    forge verify-contract 0xA3BCBF9cC63AF6Fd578f7fFf508640868f6091bF \
-    contracts/HoodGangNFT.sol:HoodGangNFT \
+    forge verify-contract 0xf0892A1fB274f16BB9DC696786AfB35f561Fdc94 \
+    contracts/TheLandBetween.sol:TheLandBetween \
     --verifier etherscan \
     --verifier-url https://api.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
