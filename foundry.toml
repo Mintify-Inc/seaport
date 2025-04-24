@@ -85,6 +85,7 @@ flowMain = "https://mainnet.evm.nodes.onflow.org"
 apeMain = "https://apechain.calderachain.xyz/http"
 abstractTest = "https://api.testnet.abs.xyz"
 abstractMain = "https://api.mainnet.abs.xyz"
+sophon = "${SOPHON_RPC_URL}"
 
 [etherscan]
 blast_sepolia = { key = "${BLAST_API_KEY}" }
@@ -97,3 +98,4 @@ flow = { url = "https://evm.flowscan.io" , chain = 747, key = "${BASE_API_KEY}" 
 apechain = { url = "https://api.apescan.io/api", chain = 33139 , key = "${APE_API_KEY}" }
 abstract = { url = "https://api.abscan.org/api", chain = 2741, key = ''}
 abstract_sepolia = { url = "https://api-sepolia.abscan.org/api", chain = 11124, key = ''}
+sophon = { key = "${ETHERSCAN_API_KEY}", url = "${SOPHON_VERIFIER_URL}", chain = 50104 }

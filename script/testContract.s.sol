@@ -2,7 +2,7 @@
 pragma solidity ^0.8.28;
 
 import "forge-std/Test.sol";
-import "../contracts/LevenCanyonLookout.sol";
+import "../contracts/TestNFT.sol";
 
 contract LevenCanyonLookoutTest is Test {
     LevenCanyonLookout private levenCanyonLookout;

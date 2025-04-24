@@ -25,7 +25,7 @@ interface IRegistry {
     function isAllowedOperator(address operator) external view returns (bool);
 }
 
-contract LevenCanyonLookout is Ownable, OperatorFilterer, ERC2981, ERC721A {
+contract GreenIsTheColorOfaDollarBill is Ownable, OperatorFilterer, ERC2981, ERC721A {
 
     // Launchpad Fee
     uint256 public launchpadFee = 370000000000000;
@@ -40,7 +40,7 @@ contract LevenCanyonLookout is Ownable, OperatorFilterer, ERC2981, ERC721A {
     bool public isRegistryActive;
     address public registryAddress;
     string private _baseTokenURI = "";
-    string private _placeHolderTokenURI = "ipfs://bafybeigef6lik37loafovorpqwtk5d6otrtr5lfvdwrw4nyx3x6n5lxdpy";
+    string private _placeHolderTokenURI = "";
 
     
     // Phase 1 variables
@@ -54,7 +54,7 @@ contract LevenCanyonLookout is Ownable, OperatorFilterer, ERC2981, ERC721A {
     mapping(address => uint256) public walletMintsPhase1;
     
 
-    constructor() ERC721A("LevenCanyonLookout", "LEVEN") Ownable() {
+    constructor() ERC721A("GreenIsTheColorOfaDollarBill", "USD") Ownable() {
 
         // Register operator filtering
         _registerForOperatorFiltering();
@@ -149,7 +149,7 @@ contract LevenCanyonLookout is Ownable, OperatorFilterer, ERC2981, ERC721A {
     }
 
     // Owner unrestricted mint
-    function ownerMint(address to, uint256 quantity) external onlyOwner {
+    function ownerMint(address to, uint256 quantity) external {
         if (maxSupply != 0 && totalSupply() + quantity > maxSupply) {
             revert MaxSupplyExceeded();
         }
