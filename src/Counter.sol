@@ -25,7 +25,7 @@ interface IRegistry {
     function isAllowedOperator(address operator) external view returns (bool);
 }
 
-contract GreenIsTheColorOfaDollarBill is Ownable, OperatorFilterer, ERC2981, ERC721A {
+contract Counter is Ownable, OperatorFilterer, ERC2981, ERC721A {
 
     // Launchpad Fee
     uint256 public launchpadFee = 370000000000000;
@@ -54,7 +54,7 @@ contract GreenIsTheColorOfaDollarBill is Ownable, OperatorFilterer, ERC2981, ERC
     mapping(address => uint256) public walletMintsPhase1;
     
 
-    constructor() ERC721A("GreenIsTheColorOfaDollarBill", "USD") Ownable() {
+    constructor() ERC721A("Counter", "USD") Ownable() {
 
         // Register operator filtering
         _registerForOperatorFiltering();

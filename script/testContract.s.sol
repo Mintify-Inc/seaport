@@ -1,29 +1,26 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
-import "../contracts/TestNFT.sol";
+import {Script, console} from "forge-std/Script.sol";
+import {Counter} from "../src/Counter.sol";
+import {TestExt} from "lib/forge-zksync-std/src/TestExt.sol";
 
-contract LevenCanyonLookoutTest is Test {
-    LevenCanyonLookout private levenCanyonLookout;
-    address private user = address(0x1234);
+contract CounterScript is Script, TestExt {
+    Counter public counter;
 
-    function setUp() public {
-        levenCanyonLookout = new LevenCanyonLookout();
-        vm.deal(user, 1 ether); // fund the user with ETH
-        // set any other parameters as needed
-        levenCanyonLookout.setStartTimePhase1(0);
-        // levenCanyonLookout.setPricePhase1(2600000000000000); // 0.0026 ETH
-        // levenCanyonLookout.setLaunchpadFee(370000000000000); // 0.00037 ETH
-    }
+    function setUp() public {}
 
-    function testMintPhase1() public {
-        vm.startPrank(user);
-        // Attempt to mint with exactly 0.00297 ETH
-        levenCanyonLookout.mintPhase1{value: 2970000000000000}(1);
-        vm.stopPrank();
+    function run() public {
+        vm.startBroadcast();
 
-        // Assertions
-        assertEq(levenCanyonLookout.totalSupply(), 1);
+        // Encode paymaster input
+        bytes memory paymaster_encoded_input = abi.encodeWithSelector(
+            bytes4(keccak256("general(bytes)")),
+            bytes("0x")
+        );
+        vmExt.zkUsePaymaster(vm.envAddress("PAYMASTER_ADDRESS"), paymaster_encoded_input);
+        counter = new Counter();
+
+        vm.stopBroadcast();
     }
 }

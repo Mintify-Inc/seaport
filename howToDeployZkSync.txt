@@ -34,3 +34,9 @@ forge create contracts/TheLandBetween.sol:TheLandBetween \
     --verifier-url https://api.abscan.org/api \
     --etherscan-api-key TACK2D1RGYX9U7MC31SZWWQ7FCWRYQ96AD \
     --zksync
+
+
+================================================================
+
+WITH PAYMASTER (SOPHON):
+source .env && forge script ./script/Counter.s.sol --rpc-url testnet --private-key $PRIVATE_KEY --zksync --broadcast --verify
