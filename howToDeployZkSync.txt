@@ -39,4 +39,4 @@ forge create contracts/TheLandBetween.sol:TheLandBetween \
 ================================================================
 
 WITH PAYMASTER (SOPHON):
-source .env && forge script ./script/Counter.s.sol --rpc-url testnet --private-key $PRIVATE_KEY --zksync --broadcast --verify
+source .env && forge script ./script/Counter.s.sol --rpc-url sophon --private-key $PRIVATE_KEY --zksync --broadcast --verify
