@@ -1,6 +1,6 @@
 [profile.default]
 solc = '0.8.28'
-src = 'src'
+src = 'contracts'
 libs = ['lib']
 fallback_oz = true
 is_system = false # Note: NonceHolder and the ContractDeployer system contracts can only be called with a special isSystem flag as true
@@ -98,4 +98,4 @@ flow = { url = "https://evm.flowscan.io" , chain = 747, key = "${BASE_API_KEY}" 
 apechain = { url = "https://api.apescan.io/api", chain = 33139 , key = "${APE_API_KEY}" }
 abstract = { url = "https://api.abscan.org/api", chain = 2741, key = ''}
 abstract_sepolia = { url = "https://api-sepolia.abscan.org/api", chain = 11124, key = ''}
-sophon = { key = "${ETHERSCAN_API_KEY}", url = "${SOPHON_VERIFIER_URL}", chain = 50104 }
+sophon = { key = "4GSVF4EG37QD1V3ST61P82Y8Y88G62XPAZ", url = "${SOPHON_VERIFIER_URL}", chain = 50104 }

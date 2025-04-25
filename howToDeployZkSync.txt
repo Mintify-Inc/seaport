@@ -40,3 +40,6 @@ forge create contracts/TheLandBetween.sol:TheLandBetween \
 
 WITH PAYMASTER (SOPHON):
 source .env && forge script ./script/Counter.s.sol --rpc-url sophon --private-key $PRIVATE_KEY --zksync --broadcast --verify
+
+
+forge verify-contract 0x2B21d07C98905F48A71100AF2b58C069bE4d0A2A  ./contracts/Counter.sol:Counter --watch --rpc-url sophon --zksync --verifier etherscan 

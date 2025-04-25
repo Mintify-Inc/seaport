@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Counter} from "../src/Counter.sol";
+import {Counter} from "../contracts/Counter.sol";
 import {TestExt} from "lib/forge-zksync-std/src/TestExt.sol";
 
 contract CounterScript is Script, TestExt {
