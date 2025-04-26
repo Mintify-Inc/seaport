@@ -42,7 +42,7 @@ WITH PAYMASTER (SOPHON):
 source .env && forge script ./script/Counter.s.sol --rpc-url sophon --private-key $PRIVATE_KEY --zksync --broadcast --verify
 
 
-forge verify-contract 0x2B21d07C98905F48A71100AF2b58C069bE4d0A2A  ./contracts/Counter.sol:Counter --watch --rpc-url sophon --zksync --verifier etherscan 
+forge verify-contract 0xF4139bc44FE0084af8eb3Ac9d5b7b77AF0a5b071  seaport-core/src/conduit/ConduitController.sol:ConduitController --watch --rpc-url sophon --zksync --verifier etherscan 
 
 source .env && cast publish --rpc-url sophon --private-key $PRIVATE_KEY --zksync --zk-paymaster-address $PAYMASTER_ADDRESS --zk-paymaster-input $(cast calldata "general(bytes)" "0x") --verify 0xf87e8085174876e800830186a08080ad601f80600e600039806000f350fe60003681823780368234f58015156014578182fd5b80825250506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222
 
