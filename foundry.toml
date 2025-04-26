@@ -15,8 +15,8 @@ remappings = [
     'solady/=lib/solady/',
     'seaport-sol/=lib/seaport-sol/',
     'seaport-types/=lib/seaport-types/',
-    'seaport-core/=lib/seaport-core/',
-    'seaport/=contracts/',
+    "seaport/=lib/seaport-core/",
+    "seaport-core/=lib/seaport-core/",
     'closedsea/=lib/closedsea/',
     'erc721a/=lib/closedsea/lib/erc721a'
 ]
