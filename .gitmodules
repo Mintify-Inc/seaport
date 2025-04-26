@@ -39,3 +39,6 @@
 [submodule "lib/seaport"]
 	path = lib/seaport
 	url = https://github.com/ProjectOpenSea/seaport
+[submodule "seaport-zksync/lib/forge-std"]
+	path = seaport-zksync/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
