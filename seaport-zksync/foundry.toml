@@ -1,0 +1,14 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+auto_detect_remappings = false
+chain_id = 2741
+auto_detect_solc = false
+solc_version = "0.8.24"
+evm_version = "cancun"
+via_ir = true
+optimizer = true
+libraries = ["src/contracts/usdc/util/SignatureChecker.sol:SignatureChecker:0xbBB5d95A805b48E24f369127ECcDDF81e87f1A0F"]
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
